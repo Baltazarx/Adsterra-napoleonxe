@@ -1,66 +1,100 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Navbar from "./components/Navbar";
+import MovieCard from "./components/MovieCard";
+import Footer from "./components/Footer";
+import { movies, getFeaturedMovies, getMoviesByType } from "./data/movies";
 
 export default function Home() {
+  const featured = getFeaturedMovies();
+  const [heroIndex, setHeroIndex] = useState(0);
+  const hero = featured[heroIndex];
+  const allMovies = getMoviesByType("movie");
+  const allSeries = getMoviesByType("series");
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroIndex((prev) => (prev + 1) % featured.length);
+    }, 8000);
+    return () => clearInterval(timer);
+  }, [featured.length]);
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      <Navbar />
+
+      {/* Hero Section */}
+      <section className="hero">
+        <div
+          className="hero-bg"
+          style={{ backgroundImage: `url(${hero.backdrop})` }}
         />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+        <div className="hero-content">
+          <span className="hero-badge">
+            🔥 {hero.type === "series" ? "Series Populer" : "Film Unggulan"}
+          </span>
+          <h1 className="hero-title">{hero.title}</h1>
+          <div className="hero-meta">
+            <span className="rating">⭐ {hero.rating}</span>
+            <span className="dot" />
+            <span>{hero.year}</span>
+            <span className="dot" />
+            <span>{hero.duration}</span>
+            <span className="dot" />
+            <span>{hero.genre.join(", ")}</span>
+          </div>
+          <p className="hero-desc">{hero.description}</p>
+          <div className="hero-buttons">
+            <Link href={`/detail/${hero.id}`} className="btn-primary">
+              ▶ Tonton Sekarang
+            </Link>
+            <Link href={`/detail/${hero.id}`} className="btn-secondary">
+              ℹ️ Detail
+            </Link>
+          </div>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Trending Movies */}
+      <section className="section">
+        <div className="section-header">
+          <h2 className="section-title">🔥 Trending Film</h2>
+          <Link href="/movies" className="see-all">Lihat Semua →</Link>
         </div>
-      </main>
-    </div>
+        <div className="movie-row">
+          {allMovies.map((m) => (
+            <MovieCard key={m.id} movie={m} />
+          ))}
+        </div>
+      </section>
+
+      {/* Popular Series */}
+      <section className="section">
+        <div className="section-header">
+          <h2 className="section-title">📺 Series Populer</h2>
+          <Link href="/series" className="see-all">Lihat Semua →</Link>
+        </div>
+        <div className="movie-row">
+          {allSeries.map((m) => (
+            <MovieCard key={m.id} movie={m} />
+          ))}
+        </div>
+      </section>
+
+      {/* All Content */}
+      <section className="section">
+        <div className="section-header">
+          <h2 className="section-title">🎬 Semua Konten</h2>
+        </div>
+        <div className="movie-grid">
+          {movies.map((m) => (
+            <MovieCard key={m.id} movie={m} />
+          ))}
+        </div>
+      </section>
+
+      <Footer />
+    </>
   );
 }
