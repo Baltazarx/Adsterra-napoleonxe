@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import Navbar from "../components/Navbar";
 import MovieCard from "../components/MovieCard";
 import AdsterraAd from "../components/AdsterraAd";
+import { InlineBannerAd } from "../components/SpamAds";
 import Footer from "../components/Footer";
 import { searchMovies } from "../data/movies";
 

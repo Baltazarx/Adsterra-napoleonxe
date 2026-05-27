@@ -3,6 +3,7 @@ import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import MovieCard from "../../components/MovieCard";
 import AdsterraAd from "../../components/AdsterraAd";
+import { InlineBannerAd } from "../../components/SpamAds";
 import Footer from "../../components/Footer";
 import { getMovieById, movies } from "../../data/movies";
 
@@ -74,6 +75,11 @@ export default function DetailClient({ id }) {
         </div>
       </section>
 
+      {/* Inline ad before trailer */}
+      <div className="section" style={{ paddingTop: 0, paddingBottom: 0 }}>
+        <InlineBannerAd />
+      </div>
+
       {/* Trailer */}
       <section className="trailer-section">
         <h2>🎥 Trailer</h2>
@@ -88,6 +94,9 @@ export default function DetailClient({ id }) {
       </section>
 
       {/* Ad after Trailer */}
+      <div className="section" style={{ paddingTop: 0, paddingBottom: 0 }}>
+        <InlineBannerAd />
+      </div>
       <AdsterraAd />
 
       {/* Related */}
@@ -105,6 +114,9 @@ export default function DetailClient({ id }) {
       )}
 
       {/* Ad before Footer */}
+      <div className="section" style={{ paddingTop: 0, paddingBottom: 0 }}>
+        <InlineBannerAd />
+      </div>
       <AdsterraAd />
 
       <Footer />

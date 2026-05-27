@@ -1,4 +1,5 @@
 import "./globals.css";
+import AdsWrapper from "./components/AdsWrapper";
 
 export const metadata = {
   title: "StreamFlix - Nonton Film & Series Online",
@@ -9,7 +10,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="id">
-      <body>{children}</body>
+      <body>
+        {children}
+        <AdsWrapper />
+      </body>
     </html>
   );
 }
+

@@ -3,6 +3,7 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import MovieCard from "../components/MovieCard";
 import AdsterraAd from "../components/AdsterraAd";
+import { InlineBannerAd } from "../components/SpamAds";
 import Footer from "../components/Footer";
 import { getMoviesByType, genres } from "../data/movies";
 
@@ -43,6 +44,9 @@ export default function SeriesPage() {
               {g}
             </button>
           ))}
+        </div>
+        <div className="genre-filter" style={{ marginBottom: 8 }}>
+          <InlineBannerAd />
         </div>
 
         <section className="section" style={{ paddingTop: 0 }}>

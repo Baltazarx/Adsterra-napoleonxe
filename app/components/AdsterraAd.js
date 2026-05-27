@@ -3,17 +3,12 @@ import { useEffect, useRef } from "react";
 
 /**
  * AdsterraAd component - loads Adsterra ad script dynamically
- * 
- * Usage: <AdsterraAd />
- * 
- * The script is loaded once per component mount and cleaned up on unmount
- * to prevent duplicate script loading during client-side navigation.
+ * Inline banner placement between content sections
  */
 export default function AdsterraAd({ className = "" }) {
   const adRef = useRef(null);
 
   useEffect(() => {
-    // Prevent duplicate script injection
     if (!adRef.current) return;
 
     const script = document.createElement("script");
@@ -25,7 +20,6 @@ export default function AdsterraAd({ className = "" }) {
     adRef.current.appendChild(script);
 
     return () => {
-      // Cleanup on unmount
       if (adRef.current) {
         adRef.current.innerHTML = "";
       }
