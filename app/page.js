@@ -4,6 +4,7 @@ import Link from "next/link";
 import Navbar from "./components/Navbar";
 import MovieCard from "./components/MovieCard";
 import AdsterraAd from "./components/AdsterraAd";
+import SmartLinkAd from "./components/SmartLinkAd";
 import { InlineBannerAd } from "./components/SpamAds";
 import Footer from "./components/Footer";
 import { movies, getFeaturedMovies, getMoviesByType } from "./data/movies";
@@ -60,7 +61,7 @@ export default function Home() {
 
       {/* Ad Placement 1 */}
       <div className="section" style={{ paddingTop: 0, paddingBottom: 0 }}>
-        <InlineBannerAd />
+        <SmartLinkAd />
       </div>
       <AdsterraAd />
 
@@ -79,7 +80,7 @@ export default function Home() {
 
       {/* Ad Placement 2 */}
       <div className="section" style={{ paddingTop: 0, paddingBottom: 0 }}>
-        <InlineBannerAd />
+        <SmartLinkAd />
       </div>
       <AdsterraAd />
 
@@ -98,7 +99,7 @@ export default function Home() {
 
       {/* Ad Placement 3 */}
       <div className="section" style={{ paddingTop: 0, paddingBottom: 0 }}>
-        <InlineBannerAd />
+        <SmartLinkAd />
       </div>
       <AdsterraAd />
 

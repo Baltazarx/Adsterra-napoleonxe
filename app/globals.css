@@ -728,3 +728,79 @@ input { font-family: inherit; }
   .spam-interstitial-content { padding: 20px; }
 }
 
+/* ── SmartLink Ad Banners ── */
+.smartlink-ad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.smartlink-banner {
+  width: 100%;
+  padding: 16px 24px;
+  margin: 16px 0;
+  border-radius: 10px;
+  animation: spam-glow 3s ease-in-out infinite;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.smartlink-banner:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
+}
+.smartlink-banner-emoji {
+  font-size: 28px;
+  animation: spam-float 2s ease-in-out infinite;
+}
+.smartlink-banner-text {
+  font-size: 15px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+.smartlink-banner-cta {
+  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1a1a2e;
+  font-size: 12px;
+  font-weight: 900;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  animation: spam-pulse 1.5s ease-in-out infinite;
+}
+
+.smartlink-btn {
+  display: inline-flex;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-weight: 800;
+  gap: 8px;
+  animation: spam-pulse 2s ease-in-out infinite;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.smartlink-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+.smartlink-btn-emoji {
+  font-size: 20px;
+}
+.smartlink-btn-text {
+  font-size: 14px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .smartlink-banner { padding: 12px 16px; gap: 8px; flex-wrap: wrap; }
+  .smartlink-banner-emoji { font-size: 22px; }
+  .smartlink-banner-text { font-size: 13px; }
+  .smartlink-banner-cta { font-size: 11px; padding: 6px 14px; }
+}
