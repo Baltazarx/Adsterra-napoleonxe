@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Navbar from "./components/Navbar";
 import MovieCard from "./components/MovieCard";
+import AdsterraAd from "./components/AdsterraAd";
 import Footer from "./components/Footer";
 import { movies, getFeaturedMovies, getMoviesByType } from "./data/movies";
 
@@ -56,6 +57,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Ad Placement 1 */}
+      <AdsterraAd />
+
       {/* Trending Movies */}
       <section className="section">
         <div className="section-header">
@@ -69,6 +73,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Ad Placement 2 */}
+      <AdsterraAd />
+
       {/* Popular Series */}
       <section className="section">
         <div className="section-header">
@@ -81,6 +88,9 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* Ad Placement 3 */}
+      <AdsterraAd />
 
       {/* All Content */}
       <section className="section">

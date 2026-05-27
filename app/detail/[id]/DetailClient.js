@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import MovieCard from "../../components/MovieCard";
+import AdsterraAd from "../../components/AdsterraAd";
 import Footer from "../../components/Footer";
 import { getMovieById, movies } from "../../data/movies";
 
@@ -86,6 +87,9 @@ export default function DetailClient({ id }) {
         </div>
       </section>
 
+      {/* Ad after Trailer */}
+      <AdsterraAd />
+
       {/* Related */}
       {related.length > 0 && (
         <section className="section">
@@ -99,6 +103,9 @@ export default function DetailClient({ id }) {
           </div>
         </section>
       )}
+
+      {/* Ad before Footer */}
+      <AdsterraAd />
 
       <Footer />
     </>

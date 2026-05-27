@@ -3,6 +3,7 @@ import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import Navbar from "../components/Navbar";
 import MovieCard from "../components/MovieCard";
+import AdsterraAd from "../components/AdsterraAd";
 import Footer from "../components/Footer";
 import { searchMovies } from "../data/movies";
 
@@ -49,6 +50,7 @@ export default function SearchPage() {
         <Suspense fallback={<div className="loading"><div className="spinner" /></div>}>
           <SearchResults />
         </Suspense>
+        <AdsterraAd />
       </div>
       <Footer />
     </>

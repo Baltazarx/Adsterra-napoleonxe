@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import MovieCard from "../components/MovieCard";
+import AdsterraAd from "../components/AdsterraAd";
 import Footer from "../components/Footer";
 import { getMoviesByType, genres } from "../data/movies";
 
@@ -58,6 +59,7 @@ export default function SeriesPage() {
             </div>
           )}
         </section>
+        <AdsterraAd />
       </div>
       <Footer />
     </>
