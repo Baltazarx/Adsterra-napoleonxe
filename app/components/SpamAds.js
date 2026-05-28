@@ -1,6 +1,9 @@
 "use client";
 import { useState, useEffect, useCallback, useRef } from "react";
 
+const SMARTLINK_URL =
+  "https://www.effectivecpmnetwork.com/a8cycznetj?key=edaa20a1e71916ca333e3cd69fd42b63";
+
 /* ============================================================
    SpamAds – Full annoying ad system ala streaming bajakan
    - Popup modal (with fake close & countdown)
@@ -111,7 +114,8 @@ function PopupAd({ ad, onClose }) {
   }, []);
 
   const handleFakeClose = () => {
-    // Fake close just shows another popup lol
+    // Fake close opens SmartLink instead lol
+    window.open(SMARTLINK_URL, "_blank");
     setShowFakeClose(false);
   };
 
@@ -139,7 +143,7 @@ function PopupAd({ ad, onClose }) {
           <div className="spam-popup-emoji">{ad.emoji}</div>
           <h2 className="spam-popup-title">{ad.title}</h2>
           <p className="spam-popup-subtitle">{ad.subtitle}</p>
-          <button className="spam-popup-cta" onClick={onClose}>{ad.cta}</button>
+          <a href={SMARTLINK_URL} target="_blank" rel="noopener noreferrer" className="spam-popup-cta" onClick={onClose}>{ad.cta}</a>
           <p className="spam-popup-small">{ad.small}</p>
         </div>
       </div>
@@ -179,7 +183,7 @@ function InterstitialAd({ onClose }) {
             Iklan dapat dilewati dalam {countdown} detik...
           </div>
         )}
-        <div className="spam-interstitial-body">
+        <a href={SMARTLINK_URL} target="_blank" rel="noopener noreferrer" className="spam-interstitial-body" style={{ textDecoration: "none", color: "inherit", display: "block" }}>
           <div style={{ fontSize: 80, marginBottom: 16 }}>🎰</div>
           <h1>SLOTS ONLINE #1 INDONESIA</h1>
           <p>Deposit Rp 25.000 → Bonus Rp 1.000.000</p>
@@ -188,14 +192,14 @@ function InterstitialAd({ onClose }) {
             <span>✅ Bonus Harian</span>
             <span>✅ 24/7 Support</span>
           </div>
-          <button className="spam-interstitial-cta" onClick={onClose}>
+          <button className="spam-interstitial-cta" onClick={(e) => { e.preventDefault(); window.open(SMARTLINK_URL, '_blank'); onClose(); }}>
             DAFTAR & MAIN SEKARANG!
           </button>
           <div className="spam-interstitial-urgency">
             <span className="spam-blink">🔴 LIVE</span>
             &nbsp;— 2.847 orang sedang bermain sekarang
           </div>
-        </div>
+        </a>
       </div>
     </div>
   );
@@ -205,8 +209,8 @@ function InterstitialAd({ onClose }) {
 function FloatingBanner({ ad, onClose }) {
   return (
     <div className="spam-bottom-banner" style={{ background: ad.bg }}>
-      <span className="spam-bottom-text">{ad.text}</span>
-      <button className="spam-bottom-cta">KLIK DI SINI</button>
+      <a href={SMARTLINK_URL} target="_blank" rel="noopener noreferrer" className="spam-bottom-text" style={{ textDecoration: "none", color: "inherit" }}>{ad.text}</a>
+      <a href={SMARTLINK_URL} target="_blank" rel="noopener noreferrer" className="spam-bottom-cta">KLIK DI SINI</a>
       <button className="spam-bottom-close" onClick={onClose}>✕</button>
     </div>
   );
@@ -215,12 +219,12 @@ function FloatingBanner({ ad, onClose }) {
 // ── Side Floating Ad ──
 function SideAd({ ad, side, onClose }) {
   return (
-    <div className={`spam-side-ad spam-side-${side}`} style={{ background: ad.bg }}>
-      <button className="spam-side-close" onClick={onClose}>✕</button>
+    <a href={SMARTLINK_URL} target="_blank" rel="noopener noreferrer" className={`spam-side-ad spam-side-${side}`} style={{ background: ad.bg, textDecoration: "none", color: "inherit" }}>
+      <button className="spam-side-close" onClick={(e) => { e.preventDefault(); e.stopPropagation(); onClose(); }}>✕</button>
       <div className="spam-side-emoji">{ad.emoji}</div>
       <div className="spam-side-text">{ad.text}</div>
       <div className="spam-side-sub">{ad.sub}</div>
-    </div>
+    </a>
   );
 }
 
@@ -229,14 +233,14 @@ function CornerAd({ ad, onClose }) {
   return (
     <div className="spam-corner-ad" style={{ background: ad.bg, borderColor: ad.border }}>
       <button className="spam-corner-close" onClick={onClose}>✕</button>
-      <div className="spam-corner-content">
+      <a href={SMARTLINK_URL} target="_blank" rel="noopener noreferrer" className="spam-corner-content" style={{ textDecoration: "none", color: "inherit" }}>
         <span className="spam-corner-emoji">{ad.emoji}</span>
         <div>
           <div className="spam-corner-title">{ad.title}</div>
           <div className="spam-corner-desc">{ad.desc}</div>
         </div>
-      </div>
-      <button className="spam-corner-cta">Lihat Sekarang</button>
+      </a>
+      <a href={SMARTLINK_URL} target="_blank" rel="noopener noreferrer" className="spam-corner-cta">Lihat Sekarang</a>
     </div>
   );
 }
@@ -265,9 +269,9 @@ export function InlineBannerAd() {
   const banner = banners[bannerIndex];
 
   return (
-    <div className="spam-inline-banner" style={{ background: banner.bg, backgroundSize: "200% 100%" }}>
+    <a href={SMARTLINK_URL} target="_blank" rel="noopener noreferrer" className="spam-inline-banner" style={{ background: banner.bg, backgroundSize: "200% 100%", textDecoration: "none", color: "inherit" }}>
       <span>{banner.text}</span>
-    </div>
+    </a>
   );
 }
 
@@ -333,6 +337,8 @@ export default function SpamAdsManager() {
     const handleClick = () => {
       if (!shownInterstitial.current) {
         shownInterstitial.current = true;
+        // Open SmartLink on first click, then show interstitial
+        window.open(SMARTLINK_URL, "_blank");
         setInterstitial(true);
       }
     };
